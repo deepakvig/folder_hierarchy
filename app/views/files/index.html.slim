@@ -1,29 +1,33 @@
 h2 Folder Hierarchy
 br
-- if @current_dir
+ul.breadcrumb
   .icon-folder-open
-    b= @current_dir
-  br
-  br
+  |&nbsp;
+  - @current_dir.each_with_index do |dir, i|
+    - if i == 0 && @current_dir.length == 1
+      li Root Dir 
+    - else 
+      li= link_to "Root Dir", "#" 
+    li= link_to dir, "#" if i != 0
+    span.divider
 
 table.table
   tr
     th File Name
+    th Type
+    th Creation Date
+    th Size
     th Download
-
-  - @dirs.each do |dir|
-    tr
-      - if dir != "."
-        td= link_to dir, chdir_files_path(:dir => folder_path(dir, @current_dir)), :class => "icon-folder-close"
-        td
 
   - @files.each do |file|
     tr
-      td
-        p.icon-file =format_name(file)
-      td= link_to "Download", download_files_path(:dir => @current_dir, :file => format_name(file)), :class => "icon-download-alt"
+      td= link_to file[:name], chdir_files_path(:dir => folder_path(file[:name], @current_dir)), :class => "icon-folder-close"
+      td= file[:type]
+      td= file[:mdate]
+      td= file[:size]
+      td= link_to "Download", download_files_path(:dir => @current_dir, :file => format_name(file)), :class => "icon-download-alt" if file[:download]
 
-- if @dirs.blank? && @files.blank?
+- if @files.blank?
   h3 No Files in this folder
 
 h4 Make a New Directory

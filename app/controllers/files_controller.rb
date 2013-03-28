@@ -1,15 +1,9 @@
 class FilesController < ApplicationController
 
   def index
-    @current_dir, @dirs, @files = ["/"], [], []
+    @current_dir, @files = ["/"], []
     path = Rails.root.to_s+ DATAPATH
-    Dir.new(path).each do |f|
-      next if f == '.' or f == '..'
-      File.directory?(File.join(path,f)) ? @dirs << f : @files << f
-      mime_type = Mime::Type.lookup_by_extension(f)
-      puts mime_type
-      puts f
-    end
+    @files = FileStructure.dir_details path
   end
 
   def download

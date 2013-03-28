@@ -23,7 +23,11 @@ class FilesController < ApplicationController
       path = Rails.root.to_s+DATAPATH+"/"+params[:current_dir]+"/"+uploaded_io.original_filename
       File.open(path, "wb") { |f| f.write(uploaded_io.read) }
     end
-    #redirect_to chdir_files_path(:dir => params[:current_dir])
+    if params[:current_dir].blank?
+      redirect_to root_url
+    else 
+      redirect_to chdir_files_path(:dir => "/"+params[:current_dir])
+    end
   end
 
   def makedir

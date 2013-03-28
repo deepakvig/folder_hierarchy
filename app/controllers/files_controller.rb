@@ -6,6 +6,9 @@ class FilesController < ApplicationController
     Dir.new(path).each do |f|
       next if f == '.' or f == '..'
       File.directory?(File.join(path,f)) ? @dirs << f : @files << f
+      mime_type = Mime::Type.lookup_by_extension(f)
+      puts mime_type
+      puts f
     end
   end
 

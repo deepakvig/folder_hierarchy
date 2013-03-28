@@ -106,6 +106,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.21)
+    mimetype-fu (0.1.2)
     multi_json (1.7.2)
     nokogiri (1.5.9)
     polyglot (0.3.3)
@@ -216,6 +217,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   less-rails
+  mimetype-fu
   rails (= 3.2.12)
   rspec-rails
   sass-rails (~> 3.2.3)

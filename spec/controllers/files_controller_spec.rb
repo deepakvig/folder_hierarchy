@@ -30,7 +30,11 @@ describe FilesController do
 
   describe 'POST #upload' do
     it "uploads the file" do
-      #pending
+      File.stub(:open){true}
+      true.stub(:set_encoding)
+      file = fixture_file_upload('/files/upload.json','application/json')
+      post :upload, file: file, current_dir: 'path'
+      expect(response).to redirect_to chdir_files_path(dir: '/path')
     end
   end
 

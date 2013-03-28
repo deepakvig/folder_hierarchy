@@ -16,3 +16,5 @@ Complete a default Directory structure using
 This will copy a directory containing Files to Projects public Directory
 
 Change the default Variables in config/initializers/dir_parameters accordingly (From where you want the app to load data relative to the rails app)
+
+Table columns sorted once a user clicks on the Table Column Header

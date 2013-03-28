@@ -19,16 +19,17 @@ ul.breadcrumb
         |/
   li.active= @current_dir.last if @current_dir.length > 0
 
-table.table#add_dir
-  tr
-    th File Name
-    th Type
-    th Creation Date
-    th Size
-    th Download
-
-  - @files.each do |file|
-    = render 'file', :file => file
+table.table.tablesorter#add_dir
+  thead
+    tr
+      th File Name
+      th Type
+      th Creation Date
+      th Size
+      th Download
+  tbody
+    - @files.each do |file|
+      = render 'file', :file => file
 - if @files.blank?
   h3 No Files in this folder
 
@@ -38,3 +39,8 @@ h4 Make a New Directory
 h4 Upload File to Current Directory
 = render 'upload_form', :current_dir => @current_dir.join("/")
 
+javascript:
+  $(document).ready(function(){
+    alert("Hello");
+    $("table.tablesorter").tablesorter();
+  });

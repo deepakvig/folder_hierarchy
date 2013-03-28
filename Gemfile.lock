@@ -155,6 +155,7 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
+    ruby-filemagic (0.4.2)
     rubyzip (0.9.9)
     sass (3.2.7)
     sass-rails (3.2.6)
@@ -220,6 +221,7 @@ DEPENDENCIES
   mimetype-fu
   rails (= 3.2.12)
   rspec-rails
+  ruby-filemagic
   sass-rails (~> 3.2.3)
   slim (= 1.2.0)
   slim-rails

@@ -1,0 +1,10 @@
+tr
+  td
+    - if file[:type] == 'Folder'
+      = link_to file[:name], chdir_files_path(:dir => file[:path]), :class => "icon-folder-close"
+    - else
+      p.icon-file= file[:name]
+  td= file[:type]
+  td= file[:mdate].to_date.strftime('%b %d, %Y')
+  td= number_to_human_size(file[:size])
+  td= link_to "Download", file[:path], :target => "_blank", :class => "icon-download-alt" if file[:download]

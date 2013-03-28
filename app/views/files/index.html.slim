@@ -3,15 +3,23 @@ br
 ul.breadcrumb
   .icon-folder-open
   |&nbsp;
-  - @current_dir.each_with_index do |dir, i|
-    - if i == 0 && @current_dir.length == 1
-      li Root Dir 
-    - else 
-      li= link_to "Root Dir", "#" 
-    li= link_to dir, "#" if i != 0
-    span.divider
+  - if @current_dir.blank?
+    li Root Dir 
+  - else
+    li
+      = link_to "Root Dir", root_url 
+      span.divider 
+        |/
+  - path = ""
+  - @current_dir[0..-2].each_with_index do |dir, i|
+    - path = path + "/" + dir
+    li
+      = link_to dir, chdir_files_path(:dir => path)
+      span.divider
+        |/
+  li.active= @current_dir.last if @current_dir.length > 0
 
-table.table
+table.table#add_dir
   tr
     th File Name
     th Type
@@ -20,23 +28,13 @@ table.table
     th Download
 
   - @files.each do |file|
-    tr
-      td= link_to file[:name], chdir_files_path(:dir => folder_path(file[:name], @current_dir)), :class => "icon-folder-close"
-      td= file[:type]
-      td= file[:mdate]
-      td= file[:size]
-      td= link_to "Download", download_files_path(:dir => @current_dir, :file => format_name(file)), :class => "icon-download-alt" if file[:download]
-
+    = render 'file', :file => file
 - if @files.blank?
   h3 No Files in this folder
 
 h4 Make a New Directory
-= render 'dir_form', :current_dir => @current_dir
+= render 'dir_form', :current_dir => @current_dir.join("/")
 
 h4 Upload File to Current Directory
-= render 'upload_form', :current_dir => @current_dir
+= render 'upload_form', :current_dir => @current_dir.join("/")
 
-br
-- if @current_dir.join != "/"
-  .icon-arrow-up
-  = link_to "Parent Directory", chdir_files_path(:dir => @prev_dir)

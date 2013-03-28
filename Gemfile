@@ -41,6 +41,7 @@ gem 'jquery-rails'
 gem 'slim', '1.2.0'
 gem 'slim-rails'
 gem 'mimetype-fu'
+gem 'ruby-filemagic'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

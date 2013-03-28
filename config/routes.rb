@@ -2,7 +2,6 @@ FolderHierarchy::Application.routes.draw do
 
   resources :files do
     collection do
-      get "download", as: :download
       get "chdir", as: :chdir
       post "upload", as: :upload
       post "makedir", as: :makedir

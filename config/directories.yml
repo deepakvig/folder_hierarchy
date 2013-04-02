@@ -1,7 +1,0 @@
-home:
-  downloads:
-    public:
-      docs: doc.txt
-    private:
-      docs: doc1.txt
-  documents: doc2.txt

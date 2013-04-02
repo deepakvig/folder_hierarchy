@@ -8,7 +8,6 @@ class FileStructure
     files = []
     Dir.new(path).each do |f|
       next if f == '.' or f == '..'
-      puts f
       file = {
                :name => f,
                :mdate => File.mtime(File.join(path,f)),
